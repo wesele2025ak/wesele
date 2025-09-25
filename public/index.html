@@ -1,0 +1,16 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Upload test</title>
+<form id="f">
+  <input type="file" name="file" accept="image/*">
+  <button>Wyślij</button>
+</form>
+<pre id="out"></pre>
+<script>
+f.onsubmit = async (e) => {
+  e.preventDefault();
+  const fd = new FormData(f);
+  const r = await fetch('/api/upload', { method:'POST', body: fd });
+  out.textContent = await r.text();
+};
+</script>
